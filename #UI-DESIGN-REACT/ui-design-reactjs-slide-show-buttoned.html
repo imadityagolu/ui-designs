@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind Image Slideshow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div id="root"></div>
+
+    <!-- React and ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Your Slideshow Component -->
+    <script type="text/babel">
+      const { useState } = React;
+
+      function ImageSlideshow() {
+        const [currentIndex, setCurrentIndex] = useState(0);
+        const totalSlides = 3;
+
+        const showSlide = (index) => {
+          if (index >= totalSlides) index = 0;
+          if (index < 0) index = totalSlides - 1;
+          setCurrentIndex(index);
+        };
+
+        const nextSlide = () => showSlide(currentIndex + 1);
+        const prevSlide = () => showSlide(currentIndex - 1);
+
+        return (
+          <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl shadow-lg">
+            {/* Slides */}
+            <div
+              className="flex transition-transform duration-500"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              <img src="https://images4.alphacoders.com/132/1329875.png" className="w-full flex-shrink-0" alt="Slide 1" />
+              <img src="https://images4.alphacoders.com/132/1329876.png" className="w-full flex-shrink-0" alt="Slide 2" />
+              <img src="https://images3.alphacoders.com/135/1350909.png" className="w-full flex-shrink-0" alt="Slide 3" />
+            </div>
+
+            {/* Prev/Next Buttons */}
+            <button
+              onClick={prevSlide}
+              className="absolute top-1/2 left-4 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100"
+            >
+              &#8592;
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute top-1/2 right-4 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100"
+            >
+              &#8594;
+            </button>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<ImageSlideshow />);
+    </script>
+    <!-- Babel Compiler -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </body>
+</html>
