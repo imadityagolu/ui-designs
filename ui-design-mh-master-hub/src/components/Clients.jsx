@@ -116,7 +116,7 @@ function Clients() {
                   </div>
                   
                   {/* image 3 */}
-                <div className='px-0 w-97 lg:w-70 md:w-55 ml-5'>
+                <div className='w-70 lg:w-70 md:w-55 ml-5'>
 
                   <div className='flex bg-white rounded-3xl p-2 items-center justify-center lg:mt-[-160px] md:mt-[-110px] mt-[-60px] md:h-20'>
 
